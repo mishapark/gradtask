@@ -29,4 +29,17 @@
     font-size: 16px;
     line-height: 30px;
     color: rgba(255, 255, 255, 0.5);
+    position: relative;
+
+    &::before {
+        content: "*";
+        font-style: normal;
+        font-weight: normal;
+        position: absolute;
+        font-size: 48px;
+        color: rgba(219, 2, 0, 0.3);
+        top: 15%;
+        left: -6%;
+        transform: rotate(20deg)
+    }
 }

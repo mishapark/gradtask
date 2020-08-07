@@ -105,7 +105,7 @@ block content
               .works-preview__btns
                 .square-btns
                   button(type="button").square-btns__item.square-btns__item--next
-                    +icon("arrow", "square-btn__logo--next")
+                    +icon("arrow", "square-btn__logo--next active")
                   button(type="button").square-btns__item.square-btns__item--prev
                     +icon("arrow", "square-btn__logo--prev")
             .works-preview__info
@@ -168,11 +168,11 @@ block content
         .footer__content
           .footer__main-menu
             nav.menu
-            - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
-            ul.menu__list
-              each item in menuItems
-                li.menu__item
-                  a(href="#").menu__link #{item}
+              - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
+              ul.menu__list
+                each item in menuItems
+                  li.menu__item
+                    a(href="#").menu__link #{item}
           .footer__content-desc
             .footer__content-block
               p.footer__block-text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
@@ -180,7 +180,7 @@ block content
                 - var socials = ["insta", "vk", "github", "envelope"];
                 ul.socials
                   each item in socials
-                    li.socials__item
+                    li.socials__item--footer
                       a(href="#").socials__link.socials__link--footer
                         +icon(item, "socials__icon--footer")
             .footer__content-block

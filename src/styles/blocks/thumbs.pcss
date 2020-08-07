@@ -4,8 +4,14 @@
 }
 .thumbs__item {
     height: 100px;
+
+    &:hover {
+        outline: 2px solid #dc9322;
+        z-index: 100;
+    }
 }
 
 .thumbs__item.active {
-    outline: 4px solid #dc9322;
+    outline: 2px solid #dc9322;
+    z-index: 100;
 }
