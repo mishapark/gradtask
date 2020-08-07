@@ -14,4 +14,37 @@
     width: 25px;
     height: 25px;
     fill: $text-color;
+
+    &:hover {
+        fill: #FF9A00;
+        transition: 0.5s;
+    }
+    transition: fill 0.5s;
+}
+
+.socials__link--footer {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &:hover {
+    border-color: #FF9A00;
+
+    .socials__icon--footer {
+        fill: #FF9A00;
+    }
+
+    transition: 0.5s;
+    }
+    transition: border-color 0.5s;
+}
+
+.socials__icon--footer {
+    width: 25px;
+    height: 25px;
+    fill: rgba(255, 255, 255, 0.3);
+    transform: translate(47%, 47%);
+    transition: fill 0.5s;
 }

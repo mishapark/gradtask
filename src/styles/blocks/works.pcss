@@ -1,7 +1,15 @@
+.works__container {
+    padding-top: 203px;
+    padding-bottom: 203px;
+}
+
 .section-title {
     font-weight: bold;
     font-size: 36px;
     line-height: 49px;
+}
+
+.works__title {
     color: #222427;
     margin-bottom: 83px;
 }
@@ -27,6 +35,14 @@
     line-height: 25px;
     font-weight: bold;
     color: #586ED3;
+    border-bottom: 1px solid transparent;
+
+    transition: border-bottom 0.5s;
+
+    &:hover {
+        border-bottom: 1px solid #586ED3;
+        transition: 0.5s;
+    }
 }
 
 .iconed-link__logo {
@@ -51,7 +67,7 @@
     &::before {
         content: attr(data-slide);
         position: absolute;
-        top: 2%;
+        top: -4%;
         line-height: 1;
         font-size: 400px;
         right: 0;
