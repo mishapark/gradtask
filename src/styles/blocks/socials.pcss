@@ -2,6 +2,12 @@
     display: flex;
 }
 
+.socials--header {
+    @include tablets {
+        display: none;
+    }
+}
+
 .socials__item {
     margin-right: 43px;
 
@@ -12,12 +18,16 @@
 
 .socials__item--footer { 
     margin-right: 23px;
+
+    @include desktop {
+        margin-bottom: 10px;
+    }
 }
 
 .socials__icon {
     width: 25px;
     height: 25px;
-    fill: $text-color;
+    fill: rgba(255, 255, 255, 0.3);
 
     &:hover {
         fill: #FF9A00;

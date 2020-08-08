@@ -1,6 +1,10 @@
 .values {
   margin-bottom: 345px;
 
+  @include tablets {
+    margin-bottom: 150px;
+  }
+
   @include phones {
     margin-bottom: 75px;
   }
@@ -30,14 +34,14 @@
 
     @include tablets {
       bottom: 0;
-      left: 50%;
-      height: 300px;
-      transform: translateX(-50%);
-      background-position: center center;
+      left: 30%;
+      height: 100%;
+      transform: translateY(35%) rotate(90deg);
+      background-position: 50%;
     }
 
     @include phones {
-      width: 100%;
+      
     }
   }
 
@@ -56,13 +60,13 @@
     @include tablets {
       bottom: 0;
       left: 50%;
-      height: 300px;
+      height: 30%;
       transform: translateX(-50%);
       background-position: center center;
     }
 
     @include phones {
-      width: 100%;
+      
     }
   }
 }
@@ -71,22 +75,29 @@
   position: relative;
   width: 70%;
   margin-left: 30%;
+
+  @include tablets {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .values__title {
   margin-bottom: 82px;
   display: flex;
+
+  @include tablets {
+    justify-content: center;
+  }
 }
 
 .values__title-container {
-  width: 60%;
+  width: 70%;
   margin-left: 6%;
   @include desktop {
-    width: 42%;
     margin-left: 0;
   }
   @include tablets {
-    width: 68%;
     text-align: center;
   }
   @include phones {
@@ -115,6 +126,8 @@
 
   @include tablets {
     justify-content: center;
+    padding-left: 0;
+    width: 100%;
   }
 }
 

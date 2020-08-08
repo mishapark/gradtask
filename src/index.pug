@@ -8,13 +8,13 @@ block content
           a.logo(href="#") МП
           nav.menu
             - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
-            ul.menu__list
+            ul.menu__list.menu__list--header
               each item in menuItems
                 li.menu__item
                   a(href="#").menu__link #{item}
 
           - var socials = ["insta", "vk", "github", "envelope"];
-          ul.socials
+          ul.socials.socials--header
             each item in socials
               li.socials__item
                 a(href="#").socials__link
@@ -136,7 +136,7 @@ block content
                 .reviews__btn.reviews__btn_next
             ul.reviews__content
               - for (var i = 0; i < 1; i++)
-                li.reviews__content-item
+                li.reviews__content-item.active
                   .quote
                     .quote__text
                       p Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!

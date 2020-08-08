@@ -6,6 +6,12 @@
 
 .skills__item {
   margin-bottom: 30px;
+
+  @include tablets {
+    &:last-child {
+    margin-bottom: 0;
+    }
+  }
 }
 
 .skill {
@@ -52,13 +58,27 @@
     font-size: 24px;
     font-weight: 700;
     color: #222427;
+
+    @include tablets {
+      display: none;
+    }
+
+    @include phones {
+      display: block;
+    }
 }
 
 .skills-row__list {
   display: flex;
   flex-wrap: wrap;
   margin-left: -4%;
+
   @include phones {
+    justify-content: center;
+  }
+
+  @include tablets {
+    margin-left: 0;
     justify-content: center;
   }
 }

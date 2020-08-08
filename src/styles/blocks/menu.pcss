@@ -1,6 +1,18 @@
 .menu__list {
     display: flex;
     justify-content: center;
+
+    &--header {
+        @include tablets {
+            display: none;
+        }
+    }
+}
+
+.menu__item {
+    @include desktop {
+        margin-bottom: 10px;
+    }
 }
 
 .menu__link {
@@ -16,5 +28,13 @@
         color: #FF9A00;
         border-bottom-color: #FF9A00;
         transition: 0.5s;
+    }
+
+    @include desktop {
+        padding-bottom: 0;
+
+        &:hover {
+            border-bottom-color: transparent;
+        }
     }
 }

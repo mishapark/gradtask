@@ -8,6 +8,10 @@
 .container__footer {
     display: flex;
     padding: 70px 0 67px;
+
+    @include phones {
+        flex-direction: column;
+    }
 }
 
 .footer__copyright {
@@ -17,6 +21,11 @@
 
     @include desktop {
         flex-direction: column;
+    }
+
+    @include phones {
+        margin-right: 0;
+        margin-bottom: 50px;
     }
 }
 .footer__content {
@@ -87,11 +96,19 @@
 .footer__block-text {
     color: rgba(255, 255, 255, 0.5);
     line-height: 30px;
+
+    @include desktop {
+        margin-bottom: 20px;
+    }
 }
 
 .footer__block-quote {
     color: rgba(255, 255, 255, 0.5);
     line-height: 30px;
+    
+    @include desktop {
+        margin-bottom: 20px;
+    }
 }
 
 .footer__author {
