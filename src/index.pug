@@ -6,6 +6,7 @@ block content
       .container.hero__container
         header.header
           a.logo(href="#") МП
+
           nav.menu
             - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
             ul.menu__list.menu__list--header
@@ -19,6 +20,30 @@ block content
               li.socials__item
                 a(href="#").socials__link
                   +icon(item, "socials__icon")
+
+          .hamburger__menu
+            input.hambuger__input(type="checkbox")#hambuger__toggle
+            label.hamburger__open-btn(for="hambuger__toggle")
+              span.hamburger__open-span
+            .hamburger__overlay
+              input.hambuger__input(type="checkbox")#hambuger__toggle-close
+              label.hamburger__close-btn(for="hambuger__toggle-close")
+                span.hamburger__close-span
+              .hamburger__content
+                nav.menu
+                  - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
+                  ul.menu__list.menu__list--hamburger
+                    each item in menuItems
+                      li.menu__item--hamburger
+                        a(href="#").menu__link--hamburger #{item}
+                .hamburger__content-socials
+                  - var socials = ["insta", "vk", "github", "envelope"];
+                  ul.socials.socials--hamburger
+                    each item in socials
+                      li.socials__item
+                        a(href="#").socials__link
+                          +icon(item, "socials__icon--hamburger")
+
 
         .userinfo
           .userinfo__title Личный сайт #[br] веб разработчика
