@@ -1,5 +1,102 @@
-.reviews {
-    background: url("~images/content/guitarist.png") center top / cover no-repeat;
-    padding-bottom: calc(410px + 35vh);
-    padding-top: 143px;
+.reviews__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 95px;
+
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 33px;
+  }
+}
+
+.reviews__title.section-title {
+    margin-bottom: 0;
+    margin-right: 10%;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 49px;
+    color: #FFFFFF;
+
+  @include phones {
+    margin-right: 0%;
+    margin-bottom: 25px;
+  }
+}
+
+.reviews__buttons {
+  display: flex;
+}
+
+.reviews__btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid currentColor;
+  position: relative;
+  border-radius: 50%;
+  margin-right: 30px;
+  cursor: pointer;
+  transition: border-color 0.5s;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:before {
+    content: "";
+    width: 8px;
+    height: 10px;
+    display: block;
+    background: svg-load('arrow-down.svg', fill=$text-color) center center / contain no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &_prev {
+    &:before {
+      transform: translate(-50%, -50%) rotate(-180deg);
+    }
+  }
+
+  &:hover {
+    border-color: #DC9322;
+    transition: 0.5s;
+  }
+}
+
+.reviews__content {
+  overflow: hidden;
+  display: flex;
+}
+
+.reviews__content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  will-change: transform;
+  transition: transform .3s;
+
+  @include tablets {
+    margin-left: 0;
+  }
+  @include phones {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.reviews__content-item {
+  flex-shrink: 0;
+  padding-right: 30px;
+  width: 50%;
+  display: flex;
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @include phones {
+    margin-right: 0;
+    width: 100%;
+  }
 }

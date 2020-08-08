@@ -1,6 +1,5 @@
 .footer {
     background: #100022;
-    position: absolute;
     bottom: 0;
     width: 100%;
     min-height: 35vh;
@@ -15,6 +14,10 @@
     display: flex;
     margin-right: 156px;
     flex: 1;
+
+    @include desktop {
+        flex-direction: column;
+    }
 }
 .footer__content {
     display: flex;
@@ -31,10 +34,18 @@
 .footer__content-desc {
     display: flex;
     justify-content: space-between;
+
+    @include tablets {
+        flex-direction: column;
+    }
 }
 
 .footer__copyright-year-wrap {
     margin-right: 56px;
+
+    @include desktop {
+        margin-bottom: 24px;
+    }
 }
 
 .footer__copyright-year{
@@ -62,6 +73,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include tablets {
+        width: 100%;
+        margin-bottom: 47px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .footer__block-text {

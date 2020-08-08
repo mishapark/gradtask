@@ -28,32 +28,36 @@ block content
           button.scroll-down-btn Скролл
           a(href="#").scroll-icon-link
             +icon("scroll1", "scroll__icon")
-    section.about
-      .container.about__container
-        .about__user
-          .user
-            .user__avatar
-              .user__avatar-style
-                +image("content/user.jpg", "user__avatar-pic")
-            -
-              var userInfo = [
-                ["Проживаю:", "Москва"],
-                ["Возраст:", "22 года"],
-                ["Родился:", "9 марта 1998"],
-              ];
 
-            table.user__data
-              each item in userInfo
-                tr.user__data-row
-                  td.user__data-title #{item[0]}
-                  td.user__data-content #{item[1]}
-        .about__content
-          .about__desc Привет, меня зовут
-          .about__title Михаил Пак
-          .about__text-info
-            p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-          .about__ps
-            p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+    section.about
+      .container
+        .about__columns
+          .about__user
+            .user
+              .user__avatar
+                .user__avatar-wrapper
+                  +image('content/user.jpg', 'user__avatar-pic')
+              .user__about
+                - 
+                  var userinfo = [
+                    ['Проживаю:', "Москва"],
+                    ['Возраст:', "22 года"],
+                    ['Родился:', "9 марта 1998"],
+                  ];
+                table.user__table
+                  each item in userinfo
+                    tr
+                      td.user__table-title #{item[0]}
+                      td.user__table-content #{item[1]}
+          .about__user-text
+            .about__main-text-content
+              .about__desc Привет, меня зовут
+              .about__title Михаил Пак
+              .about__text-info
+                p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+            .about__ps
+              | Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+  
   .middle-section
     .triangles.middle-section__triangles-top
       svg(viewBox="0 0 1000 100" preserveAspectRatio="none").triangles__shape.triangles__shape--position--left
@@ -62,100 +66,100 @@ block content
         polygon(points="0,100 1000,100 1000,0")
     section.values
       .container.values__container
-        .values__title
-          .values__title-text Чем я могу быть полезен вам
-          .values__content
-            p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-        .values__widget
-          -
-            var skillsCategories = [
-              ["Frontend", ["HTML", "CSS", "javascript", "Vue"]],
-              ["Workflow", ["Git", "Terminal", "Gulp", "Webpack"]],
-            ];
+        .values__wrapper
+          .values__title
+            .values__title-container
+              .values__title-text Чем я могу быть полезен вам
+              .values__content
+                p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+          .values__widget
+            .values__widget-container
+              - 
+                var skillsCategories = [
+                  ["Frontend", ["HTML5", "CSS3", "Javascript", "Vue.js"]],
+                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
+                ];
 
-          ul.skills
-            each category in skillsCategories
-              li.skills__item
-                .skills-row
-                  .skills-row__title #{category[0]}
-                  ul.skills-row__list
-                    each skill in category[1]
-                      li.skills-row__item
-                        .skill
-                          svg(viewBox="0 0 100 100").skill__circle-shape
-                            circle(cx="50" cy="50" r="40").skill__circle.skill__circle--layer--under
-                            circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform="rotate(180 50 50)").skill__circle.skill__circle--layer--above
-                            linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0%")
-                              stop(offset="0%" stop-color="#3259e8")
-                              stop(offset="100%" stop-color="#4880ed")
-                          .skill__title #{skill}
+              ul.skills
+                each category in skillsCategories
+                  li.skills__item(v-for="category in categories")
+                    .skills-row
+                      .skills-row__title #{category[0]}
+                      ul.skills-row__list
+                        each skill in category[1]
+                          li.skills-row__item
+                            .skill
+                              svg(viewBox="0 0 100 100").skill__circle-shape
+                                circle(cx="50" cy="50" r="40").skill__circle.skill__circle_under
+                                circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform='rotate(180 50 50)').skill__circle.skill__circle_above
+                                linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0")
+                                  stop(offset="0%" stop-color="#243FE5")
+                                  stop(offset="100%" stop-color="#0788F2")
+                              .skill__circle-text #{skill}
+
     section.works
-      .container.works__container
-        .section-title.works__title Мои работы
-        .works__content
-          .works-preview
-            .works-preview__pictures(data-slide="2")
-              +image("content/slider-1.jpg", "works-preview__img")
-              .works-preview__thumbs
-                ul.thumbs
-                  - for (var i = 4; i > 0; i--)
-                    li.thumbs__item(class=`${i === 1 ? "active" : ""}`)
-                      a(href="#").thumbs__link
-                        +image(`content/slider-${i}.jpg`, "thumbs__pic")
-              .works-preview__btns
-                .square-btns
-                  button(type="button").square-btns__item.square-btns__item--next
-                    +icon("arrow", "square-btn__logo--next active")
-                  button(type="button").square-btns__item.square-btns__item--prev
-                    +icon("arrow", "square-btn__logo--prev")
-            .works-preview__info
-              - var tags = ["HTML", "CSS", "JavaScript"];
-              ul.tags
-                each item in tags
-                  li.tags__item
-                    .tag #{item}
-              .works-preview__title Сайт школы образования
-              .works-preview__desc
-                p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-              +icon("link", "iconed-link__logo")
-              a(href="#").iconed-link Посмотреть сайт
-    section.reviews
-      .container
-        .slider
-          .slider__header
-            .section-title.reviews__title Что обо мне говорят
-            .slider__buttons
-              button(type="button").round-btn.round-btn--pointer--left
-                +icon("arrow", "round-btn--left")
-              button(type="button").round-btn.round-btn--pointer--right
-                +icon("arrow", "round-btn--right")
-          ul.slider__content
-            li.slider__item
-                +icon("quote", "quote__logo")
-                .quote
-                  .quote__text
-                    p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .quote__user
-                    .user-display
-                      .user-display__avatar
-                      .user-display__avatar-style
-                        +image("content/dmitriy.png", "user-display__pic")
-                      .user-display__data
-                        .user-display__name Ковальчук Дмитрий
-                        .user-display__occ Основатель Loftschool
-            li.slider__item
-                +icon("quote", "quote__logo")
-                .quote
-                  .quote__text
-                    p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-                  .quote__user
-                    .user-display
-                      .user-display__avatar
-                      .user-display__avatar-style
-                        +image("content/vladimir.png", "user-display__pic")
-                      .user-display__data
-                        .user-display__name Владимир Сабанцев
-                        .user-display__occ Преподаватель
+          .container.works__container
+            .section-title.works__section-title Мои работы
+            .works__content
+              .works-slider
+                .works-slider__pics(data-slide="1")
+                  .works-slider__pics-content
+                    +image('content/slider-1.jpg', 'works-slider__fullpic')
+                    .works-slider__buttons
+                      a(href="#").works-slider__btn.works-slider__btn_next
+                      a(href="#").works-slider__btn.works-slider__btn_prev
+                    ul.works-slider__thumbs
+                      - for (var i = 4; i > 0; i--)
+                        li.works-slider__thumb-item(class=`${i === 1 ? 'active' : ''}`)
+                          a(href="").works-slider__thumb-link
+                            +image(`content/slider-${i}.jpg`, 'works-slider__thumb')
+                .works-slider__data
+                  ul.works-slider__tags
+                    - var tags = ['HTML', 'CSS', 'JavaScript'];
+                    each item in tags
+                      li.works-slider__tag-item 
+                        .tag #{item}
+                  .works-slider__title Сайт школы образования
+                  .works-slider__desc
+                    p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .works-slider__link 
+                    a(href="#").iconed-link Посмотреть сайт
+
+    section.contacts
+      .container.contacts__container
+        .contacts__about
+          .reviews
+            .reviews__header
+              .reviews__title.section-title Что обо мне говорят
+              .reviews__buttons
+                .reviews__btn.reviews__btn_prev
+                .reviews__btn.reviews__btn_next
+            ul.reviews__content
+              - for (var i = 0; i < 1; i++)
+                li.reviews__content-item
+                  .quote
+                    .quote__text
+                      p Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                    .quote__user
+                      .user-min
+                        .user-min__avatar
+                          .user-min__pic-wrapper
+                            +image('content/dmitriy.png', 'user-min__avatar-pic')
+                        .user-min__info
+                          .user-min__name Ковальчук Дмитрий
+                          .user-min__occ Основатель Loftschool
+                li.reviews__content-item
+                  .quote
+                    .quote__text
+                      p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                    .quote__user
+                      .user-min
+                        .user-min__avatar
+                          .user-min__pic-wrapper
+                            +image('content/vladimir.png', 'user-min__avatar-pic')
+                        .user-min__info
+                          .user-min__name Владимир Сабанцев
+                          .user-min__occ Преподаватель
 
     footer.footer
       .container.container__footer

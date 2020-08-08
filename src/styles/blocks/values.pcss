@@ -1,57 +1,126 @@
 .values {
-    height: 100vh;
-    position: relative;
+  margin-bottom: 345px;
 
-    &::before {
-        content: "";
-        z-index: 10;
-        position: absolute;
-        width: 633px;
-        height: 1378px;
-        background: url(../images/content/guitar.png) no-repeat;
-        top: -45%;
-        left: 5%;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        width: 633px;
-        height: 1378px;
-        background: url(../images/content/tag.png) no-repeat;
-        top: 30%;
-    }
+  @include phones {
+    margin-bottom: 75px;
+  }
 }
 
 .values__container {
-    padding-left: 650px;
-    padding-top: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: inherit;
+    position: relative;
+    padding-top: 135px;
+
+  @include tablets {
+    padding-bottom: 350px;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    background: url('~images/content/guitar.png') left bottom / contain no-repeat;
+    display: block;
+    background-size: contain;
+    bottom: 20%;
+    height: 128%;
+    width: 40%;
+    left: -7%;
+
+    @include desktop {
+      height: 100%;
+    }
+
+    @include tablets {
+      bottom: 0;
+      left: 50%;
+      height: 300px;
+      transform: translateX(-50%);
+      background-position: center center;
+    }
+
+    @include phones {
+      width: 100%;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: url('~images/content/tag.png') left bottom / contain no-repeat;
+    display: block;
+    background-size: contain;
+    bottom: 5%;
+    height: 100%;
+    width: 50%;
+    left: -17%;
+    z-index: -1;
+
+    @include tablets {
+      bottom: 0;
+      left: 50%;
+      height: 300px;
+      transform: translateX(-50%);
+      background-position: center center;
+    }
+
+    @include phones {
+      width: 100%;
+    }
+  }
+}
+
+.values__wrapper {
+  position: relative;
+  width: 70%;
+  margin-left: 30%;
 }
 
 .values__title {
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 82px;
+  display: flex;
 }
+
+.values__title-container {
+  width: 38%;
+  margin-left: 6%;
+  @include desktop {
+    width: 42%;
+    margin-left: 0;
+  }
+  @include tablets {
+    width: 68%;
+    text-align: center;
+  }
+  @include phones {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
 .values__title-text {
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 41px;
-    color: #222427;
-    margin-bottom: 53px;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 55px;
+  color: #222427;
 }
+
 .values__content {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 30px;
-    color: rgba(16, 0, 34, 0.5);
-    margin-bottom: 79px;
-    width: 600px;
+  color: rgba(16, 0, 34, 0.5);
+  font-weight: 600;
+  line-height: 1.8;
 }
 
 .values__widget {
-    padding-left: 11%;
+    display: flex;
+    padding-left: 20%;
+
+  @include tablets {
+    justify-content: center;
+  }
+}
+
+.values__widget-container {
+  width: 100%;
+  @include tablets {
+    width: 95%;
+  }
 }
