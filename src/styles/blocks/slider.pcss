@@ -1,7 +1,7 @@
 .works-slider {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   @include tablets {
     flex-direction: column;
     justify-content: flex-start;
@@ -24,7 +24,7 @@
     top: 50%;
     transform: translateY(-60%);
     line-height: 1;
-    left: 100%;
+    left: 97%;
     font-size: 400px;
     font-weight: 800;
     margin-left: -8%;
@@ -35,13 +35,12 @@
       top: 31.5%;
       transform: translateY(-15%);
       font-size: 300px;
-      margin-left: -12%;
+      left: 100%;
     }
 
     @include tablets {
-      top: 25%;
+      top: 20%;
       font-size: 350px;
-      margin-left: -7%;
     }
   }
 
@@ -83,8 +82,6 @@
   width: 70%;
   flex-wrap: nowrap;
   display: flex;
-  flex-direction: row-reverse;
-
 
   @include phones {
     display: none;
@@ -119,6 +116,9 @@
     bottom: 0;
     left: calc(100% - 100px);
   }
+  @include mobiles {
+    left: calc(100% - 60px);
+  }
 }
 
 .works-slider__btn {
@@ -131,6 +131,10 @@
   @include phones {
     width: 100px;
     height: 100px;
+  }
+  @include mobiles {
+    width: 60px;
+    height: 60px;
   }
 
   &:before {
@@ -150,6 +154,10 @@
       width: 30px;
       height: 30px;
     }
+    @include mobiles {
+      width: 20px;
+      height: 20px;
+    }
   }
   &:hover {
     &:before {
@@ -162,14 +170,14 @@
     }
     &:active {
       &:before {
-        margin-top: 3px;
+        margin-left: -3px;
       }
     }
   }
   &_next {
     &:active {
       &:before {
-        margin-top: -3px;
+        margin-left: 3px;
       }
     }
   }
@@ -177,6 +185,7 @@
 
 .works-slider__data {
   width: 24%;
+  z-index: 100;
 
   @include tablets {
     width: 100%;
@@ -198,6 +207,7 @@
 .works-slider__thumb-link {
   display: block;
   height: 100%;
+  padding: 0;
 }
 
 .works-slider__tags {

@@ -4,7 +4,12 @@
 
 .socials--header {
     @include tablets {
-       margin-left: 40%;
+        margin-left: auto;
+        margin-right: 22px;
+    }
+
+    @include mobiles {
+        margin-right: 20px;
     }
 }
 
@@ -13,6 +18,13 @@
 
     &:last-child {
         margin-right: 0;
+    }
+
+    @include tablets {
+        margin-right: 20px;
+    }
+    @include mobiles {
+        margin-right: 15px;
     }
 }
 
@@ -47,9 +59,9 @@
     .socials__icon--footer {
         fill: #FF9A00;
     }
-
     transition: 0.5s;
     }
+    
     transition: border-color 0.5s;
 }
 

@@ -85,4 +85,14 @@
 
 .skills-row__item {
   margin-left: 4%;
+
+  @include tablets {
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  @include mobiles {
+    margin-left: 0;
+  }
 }

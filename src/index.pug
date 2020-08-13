@@ -99,92 +99,19 @@ block content
                 p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
           .values__widget
             .values__widget-container
-              - 
-                var skillsCategories = [
-                  ["Frontend", ["HTML5", "CSS3", "Javascript", "Vue.js"]],
-                  ["Workflow", ["GIT", "Terminal", "Gulp", "Webpack"]]
-                ];
-
-              ul.skills
-                each category in skillsCategories
-                  li.skills__item(v-for="category in categories")
-                    .skills-row
-                      .skills-row__title #{category[0]}
-                      ul.skills-row__list
-                        each skill in category[1]
-                          li.skills-row__item
-                            .skill
-                              svg(viewBox="0 0 100 100").skill__circle-shape
-                                circle(cx="50" cy="50" r="40").skill__circle.skill__circle_under
-                                circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform='rotate(180 50 50)').skill__circle.skill__circle_above
-                                linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="0")
-                                  stop(offset="0%" stop-color="#243FE5")
-                                  stop(offset="100%" stop-color="#0788F2")
-                              .skill__circle-text #{skill}
+              #skills-component
+              
 
     section.works
           .container.works__container
             .section-title.works__section-title Мои работы
             .works__content
-              .works-slider
-                .works-slider__pics(data-slide="1")
-                  .works-slider__pics-content
-                    +image('content/slider-1.jpg', 'works-slider__fullpic')
-                    .works-slider__buttons
-                      a(href="#").works-slider__btn.works-slider__btn_next
-                      a(href="#").works-slider__btn.works-slider__btn_prev
-                    ul.works-slider__thumbs
-                      - for (var i = 4; i > 0; i--)
-                        li.works-slider__thumb-item(class=`${i === 1 ? 'active' : ''}`)
-                          a(href="").works-slider__thumb-link
-                            +image(`content/slider-${i}.jpg`, 'works-slider__thumb')
-                .works-slider__data
-                  ul.works-slider__tags
-                    - var tags = ['HTML', 'CSS', 'JavaScript'];
-                    each item in tags
-                      li.works-slider__tag-item 
-                        .tag #{item}
-                  .works-slider__title Сайт школы образования
-                  .works-slider__desc
-                    p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .works-slider__link 
-                    a(href="#").iconed-link Посмотреть сайт
+              #preview-component
 
     section.contacts
       .container.contacts__container
         .contacts__about
-          .reviews
-            .reviews__header
-              .reviews__title.section-title Что обо мне говорят
-              .reviews__buttons
-                .reviews__btn.reviews__btn_prev
-                .reviews__btn.reviews__btn_next
-            ul.reviews__content
-              - for (var i = 0; i < 1; i++)
-                li.reviews__content-item.active
-                  .quote
-                    .quote__text
-                      p Этот парень проходил обучение веб-разработке не где-то, а в Loftschool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                    .quote__user
-                      .user-min
-                        .user-min__avatar
-                          .user-min__pic-wrapper
-                            +image('content/dmitriy.png', 'user-min__avatar-pic')
-                        .user-min__info
-                          .user-min__name Ковальчук Дмитрий
-                          .user-min__occ Основатель Loftschool
-                li.reviews__content-item
-                  .quote
-                    .quote__text
-                      p Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-                    .quote__user
-                      .user-min
-                        .user-min__avatar
-                          .user-min__pic-wrapper
-                            +image('content/vladimir.png', 'user-min__avatar-pic')
-                        .user-min__info
-                          .user-min__name Владимир Сабанцев
-                          .user-min__occ Преподаватель
+          #reviews-component
 
     footer.footer
       .container.container__footer
