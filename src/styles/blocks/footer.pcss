@@ -22,6 +22,10 @@
     @include desktop {
         flex-direction: column;
     }
+    
+    @include tablets {
+        margin-right: 50px;
+    }
 
     @include phones {
         margin-right: 0;
@@ -37,7 +41,26 @@
 
 .footer__main-menu {
     margin-bottom: 47px;
-    margin-left: -30px;
+    width: 65%;
+
+    @include tablets {
+        width: 80%;
+    }
+    @include phones {
+    width: 46%;
+    }
+    @include mobiles {
+    width: 69%;
+    }
+}
+
+.footer-menu__item {
+    margin-right: 20px;
+    margin-bottom: 15px;
+
+    @include phones {
+        margin-right: 10px;
+    }
 }
 
 .footer__content-desc {

@@ -4,8 +4,9 @@ script(type="text/x-template")#slider-container
             display(
                 :currentWork="currentWork",
                 :works ="works",
-                :currentIndex ="currentIndex"
-                @slide="slide"
+                :currentIndex="currentIndex",
+                @slide="slide",
+                @btnImage="handleBtnImage"
             )
         info(
             :currentWork="currentWork"
@@ -17,8 +18,12 @@ script(type="text/x-template")#slider-display
         thumbs(
             :works="slicedWorks"
             :currentWork="currentWork"
+            @btnImage="$emit('btnImage', $event)"
         )
         btns(
+            :currentWork="currentWork",
+            :currentIndex="currentIndex",
+            :works="works"
             @slide="$emit('slide', $event)"
         )
 
@@ -28,18 +33,16 @@ script(type="text/x-template")#slider-thumbs
             v-for="slide in works" :key="slide.id"
             :class="{active: currentWork.id === slide.id}"
             )
-            button.works-slider__thumb-link
+            button(@click.prevent="$emit('btnImage', slide.id)" type="button").works-slider__thumb-link
                 img(:src="slide.photo").works-slider__thumb
 
 script(type="text/x-template")#slider-btns
     .works-slider__buttons
         button(
-            type="button"
-            @click="$emit('slide', 'next')"
+            @click.prevent="$emit('slide','next',)" :class="{disabled: currentIndex === works.length - 1}"
         ).works-slider__btn.works-slider__btn_next
         button(
-            type="button"
-            @click="$emit('slide', 'prev')"
+            @click.prevent="$emit('slide','prev')" :class="{disabled: currentIndex === 0}"
         ).works-slider__btn.works-slider__btn_prev
 
 script(type="text/x-template")#slider-data

@@ -21,28 +21,7 @@ block content
                 a(href="#").socials__link
                   +icon(item, "socials__icon")
 
-          .hamburger__menu
-            input.hambuger__input(type="checkbox")#hambuger__toggle
-            label.hamburger__open-btn(for="hambuger__toggle")
-              span.hamburger__open-span
-            .hamburger__overlay
-              input.hambuger__input(type="checkbox")#hambuger__toggle-close
-              label.hamburger__close-btn(for="hambuger__toggle-close")
-                span.hamburger__close-span
-              .hamburger__content
-                nav.menu
-                  - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
-                  ul.menu__list.menu__list--hamburger
-                    each item in menuItems
-                      li.menu__item--hamburger
-                        a(href="#").menu__link--hamburger #{item}
-                .hamburger__content-socials
-                  - var socials = ["insta", "vk", "github", "envelope"];
-                  ul.socials.socials--hamburger
-                    each item in socials
-                      li.socials__item
-                        a(href="#").socials__link
-                          +icon(item, "socials__icon--hamburger")
+          #hamburger-component
 
 
         .userinfo
@@ -123,11 +102,11 @@ block content
             .footer__copyright-desc Личный сайт веб&nbsp;разработчика
         .footer__content
           .footer__main-menu
-            nav.menu
+            nav.footer-menu
               - var menuItems = ["Обо мне", "Навыки", "Работы", "Отзывы"];
               ul.menu__list
                 each item in menuItems
-                  li.menu__item
+                  li.footer-menu__item
                     a(href="#").menu__link #{item}
           .footer__content-desc
             .footer__content-block

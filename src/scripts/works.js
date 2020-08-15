@@ -1,11 +1,12 @@
 import Vue from "vue";
 
 const thumbs = {
-    props: ["works", "currentWork"],
+    props: ["currentWork", "currentIndex", "works"],
     template: "#slider-thumbs"
 }
 const btns = {
     template: "#slider-btns",
+    props: ["currentWork", "currentIndex", "works"]
 }
 const display = {
     props: ["currentWork", "works", "currentIndex"],
@@ -14,7 +15,7 @@ const display = {
     computed: {
         slicedWorks() {
             const works = [...this.works];
-            return works.slice(0, 3);
+            return works.slice(0, 4);
         }
     }
 }
@@ -29,6 +30,9 @@ const info = {
     computed: {
         tagsArray() {
             return this.currentWork.skills.split(",");
+        },
+        currentInfo() {
+            return this.currentWork ? this.currentWork : '';
         }
     }
 }
@@ -45,19 +49,18 @@ new Vue({
     },
     computed: {
         currentWork() {
-            return this.works[0];
+            return this.works[this.currentIndex];
         }
     },
     watch: {
         currentIndex(value) {
-            this.makeInfiniteLoopForNdx(value);
-        },
+            this.noInfiniteLoop(value);
+        }
     },
     methods: {
-        makeInfiniteLoopForNdx(index) {
-            const worksNumber = this.works.length - 1
-            if (index < 0) this.currentIndex = worksNumber;
-            if (index > worksNumber) this.currentIndex = 0;
+        noInfiniteLoop(index) {
+            if (index < 0) this.currentIndex = 0;
+            if (index > this.works.length - 1) this.currentIndex = this.works.length - 1;
         },
         requireImagesToArray(data) {
             return data.map(item => {
@@ -67,20 +70,23 @@ new Vue({
             });
         },
         slide(direction) {
-            const lastItem = this.works[this.works.length - 1];
             switch(direction) {
                 case "next" :
-                    this.works.push(this.works[0]);
-                    this.works.shift();
                     this.currentIndex++
                     break;
                 case "prev" :
-                    this.works.unshift(lastItem);
-                    this.works.pop();
                     this.currentIndex--
                     break;
             }
-        }
+        },
+        handleBtnImage(workId) {
+            this.works.forEach((element, index) => {
+              if (element.id === workId) {
+                return this.currentIndex = index;
+              }
+            });
+        },
+      
     },
     created() {
         const data = require("../data/works.json");
