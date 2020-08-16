@@ -4,8 +4,16 @@ script(type="text/x-template")#reviews-container
         .reviews__header
             .reviews__title.section-title Что обо мне говорят
             .reviews__buttons
-                button(type="button" @click="slide('prev')").reviews__btn.reviews__btn_prev
-                button(type="button" @click="slide('next')").reviews__btn.reviews__btn_next
+                button(
+                    type="button"
+                    ref="btnPrev"
+                    @click="slide('prev')"
+                    ).reviews__btn.reviews__btn_prev.disabled
+                button(
+                    type="button"
+                    @click="slide('next')"
+                    ref="btnNext"
+                ).reviews__btn.reviews__btn_next
         swiper(ref="slider" :options="sliderOptions")
             swiper-slide(v-for="review in reviews" :key="reviews.id")
                 .quote

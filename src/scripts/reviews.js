@@ -19,7 +19,7 @@ new Vue({
                         slidesPerView: 2,
                     }
                 }
-            }
+            },
         }
     },
     methods: {
@@ -31,7 +31,10 @@ new Vue({
             });
         },
         slide(direction) {
-            const slider = this.$refs["slider"].$swiper;
+            const slider = this.$refs.slider.$swiper;
+            const nextBtn = this.$refs.btnNext;
+            const prevBtn = this.$refs.btnPrev;
+            
             switch(direction) {
                 case "next" :
                     slider.slideNext();
@@ -40,7 +43,19 @@ new Vue({
                     slider.slidePrev();
                     break;
             }
-        }
+
+            if (slider.isEnd) {
+                nextBtn.classList.add('disabled');
+            } else {
+                nextBtn.classList.remove('disabled');
+            }
+
+            if (slider.isBeginning) {
+                prevBtn.classList.add('disabled');
+            } else {
+                prevBtn.classList.remove('disabled');
+            }
+        },
     },
     created() {
         const data = require("../data/reviews.json");

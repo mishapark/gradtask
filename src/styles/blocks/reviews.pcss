@@ -38,6 +38,13 @@
   margin-right: 30px;
   cursor: pointer;
   transition: border-color 0.5s;
+
+  &.disabled {
+    opacity: .7;
+    filter: grayscale(100%);
+    pointer-events: none;
+    user-select: none;
+  }
   
   &:last-child {
     margin-right: 0;
