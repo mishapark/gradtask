@@ -1,15 +1,13 @@
-<template>
-  <div class="avatar-component" :style="measures">
-    <img 
-      class="image"
-      v-bind="$attrs"
-      alt="user picture"
-    />
-  </div>
+<template lang="pug">
+  .avatar-component
+    .image
+      img(v-bind="$attrs" :src="userPic")
+    .username {{ title }}
 </template>
 <script>
 export default {
   props: {
+    title: String,
     size: {
       type: String,
       default: "3"
@@ -22,6 +20,9 @@ export default {
         width: `${size}rem`,
         height: `${size}rem`,
       }
+    },
+    userPic() {
+      return require("../../../images/content/user.jpg").default;
     }
   }
 }

@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "category": "Frontend",
+        "skills": [
+            {
+                "id":0, 
+                "title": "HTML", 
+                "percent": 80
+            },
+            {
+                "id":1, 
+                "title": "CSS", 
+                "percent": 20
+            },
+            {
+                "id":2, 
+                "title": "JavaScript", 
+                "percent": 50
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "category": "Backend",
+        "skills": [
+            {
+                "id":0, 
+                "title": "PHP", 
+                "percent": 80
+            },
+            {
+                "id":1, 
+                "title": "Python", 
+                "percent": 20
+            },
+            {
+                "id":2, 
+                "title": "Java", 
+                "percent": 50
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "category": "Workflow",
+        "skills": [
+            {
+                "id":0, 
+                "title": "Git", 
+                "percent": 80
+            },
+            {
+                "id":1, 
+                "title": "Docker", 
+                "percent": 20
+            },
+            {
+                "id":2, 
+                "title": "Bash", 
+                "percent": 50
+            }
+        ]
+    }
+]

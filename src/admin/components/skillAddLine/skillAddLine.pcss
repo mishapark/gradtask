@@ -1,0 +1,41 @@
+.add-line-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    &.blocked {
+        filter: grayscale(100%);
+        pointer-events: none;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+.name {
+    margin-right: 8px;
+    flex: 3;
+}
+
+.percent {
+    margin-right: 20px;
+    position: relative;
+
+    &::after {
+        content: "%";
+        display: block;
+        color: #000;
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+}
+
+
+
