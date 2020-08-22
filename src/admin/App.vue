@@ -26,6 +26,7 @@
                             :title="category.category"
                             :skills="category.skills"
                         )
+                tagsAdder
 
     
 </template>
@@ -37,6 +38,7 @@ import headline from "./components/headline/headline"
 import tabs from "./components/tabs/tabs"
 import button from "./components/button/button"
 import category from "./components/category/category";
+import tagsAdder from "./components/tagsAdder";
 
 export default {
     components: {
@@ -45,6 +47,7 @@ export default {
         tabs,
         iconedBtn: button,
         category,
+        tagsAdder
     },
     data() {
         return {
