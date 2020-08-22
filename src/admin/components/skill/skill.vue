@@ -8,19 +8,19 @@
     .skill-component(v-else)
         .title
             appInput(
-                v-model="currenSkill.title"
+                v-model="currentSkill.title"
                 noSlidePaddings
                 )
         .percent
             appInput(
-                v-model="currenSkill.percent"
+                v-model="currentSkill.percent"
                 type="number"
                 min="0"
                 max="100"
                 maxLength="3"
             )
         .button
-            icon(symbol="tick" @click="$emit('approve', currentSkill)").btn
+            icon(symbol="tick" @click="onApprove").btn
             icon(symbol="cross" @click="editmode = false").btn
 </template>
 
@@ -39,7 +39,7 @@ export default {
     data() {
         return {
             editmode: false,
-            currenSkill: {
+            currentSkill: {
                 id: 0,
                 title: this.skill.title,
                 percent: this.skill.percent
@@ -49,7 +49,18 @@ export default {
    components: {
        icon,
        appInput: input
-   }
+   },
+   methods: {
+       onApprove() {
+           this.$emit('approve', this.currentSkill)
+
+           if (this.skill.title === this.currentSkill.title) {
+               this.editmode = false;
+           } else {
+
+           }
+       }
+   },
 }
 </script>
 

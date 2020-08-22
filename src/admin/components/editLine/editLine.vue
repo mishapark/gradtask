@@ -8,6 +8,7 @@
     </div>
     <div v-else class="title">
       <div class="input">
+        <div class="message">{{ validation.firstError("editTitle") }}</div>
         <app-input
           placeholder="Название новой группы"
           :value="value"
@@ -16,7 +17,7 @@
           autofocus="autofocus"
           no-side-paddings="no-side-paddings"
           v-model="editTitle"
-          :errorText="validation.firstError('editTitle')"
+          :class="{inputError:validation.hasError('editTitle')}"
         ></app-input>
       </div>
       <div class="buttons">
@@ -24,7 +25,7 @@
           <icon symbol="tick" @click="onApprove"></icon>
         </div>
         <div class="button-icon">
-          <icon symbol="cross" @click="$emit('remove')"></icon>
+          <icon symbol="cross" @click="onRemove"></icon>
         </div>
       </div>
     </div>
@@ -39,7 +40,7 @@ export default {
   mixins: [simpleVueValidator.mixin],
   validators: {
     "editTitle": value => {
-      return Validator.value(value).required();
+      return Validator.value(value).required("Введите название");
     }
   },
 
@@ -64,11 +65,19 @@ export default {
   },
   methods: {
     onApprove() {
-      if (this.title.trim() === this.value.trim()) {
+      this.$validate().then(function(success) {
+        if (success === true) {
+          if (this.title.trim() === this.value.trim()) {
+            this.editmode = false;
+          } else {
+            this.$emit("approve", this.value);
+          }
+        }
+      });
+    },
+    onRemove() {
         this.editmode = false;
-      } else {
-        this.$emit("approve", this.value);
-      }
+        this.$emit('remove');
     }
   },
   components: {
