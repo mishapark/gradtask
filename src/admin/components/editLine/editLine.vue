@@ -11,11 +11,12 @@
         <app-input
           placeholder="Название новой группы"
           :value="value"
-          :errorText="errorText"
           @input="$emit('input', $event)"
           @keydown.native.enter="onApprove"
           autofocus="autofocus"
           no-side-paddings="no-side-paddings"
+          v-model="editTitle"
+          :errorText="validation.firstError('editTitle')"
         ></app-input>
       </div>
       <div class="buttons">
@@ -31,7 +32,17 @@
 </template>
 
 <script>
+import simpleVueValidator from "simple-vue-validator";
+const { Validator } = simpleVueValidator;
+
 export default {
+  mixins: [simpleVueValidator.mixin],
+  validators: {
+    "editTitle": value => {
+      return Validator.value(value).required();
+    }
+  },
+
   props: {
     value: {
       type: String,
@@ -47,7 +58,8 @@ export default {
   data() {
     return {
       editmode: this.editModeByDefault,
-      title: this.value
+      title: this.value,
+      editTitle: '',
     };
   },
   methods: {
