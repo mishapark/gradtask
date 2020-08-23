@@ -54,7 +54,7 @@ export default {
       default: ""
     },
     editModeByDefault: Boolean,
-    blocked: Boolean
+    blocked: Boolean,
   },
   data() {
     return {
@@ -64,16 +64,16 @@ export default {
     };
   },
   methods: {
-    onApprove() {
-      this.$validate().then(function(success) {
-        if (success) {
-          if (this.title.trim() === this.value.trim()) {
+    async onApprove() {
+      if ((await this.$validate()) === true) {
+         if (this.title.trim() === this.value.trim()) {
             this.editmode = false;
           } else {
+            this.title = this.value;
+            this.editmode = false;
             this.$emit("approve", this.value);
           }
-        }
-      });
+      }
     },
     onRemove() {
         this.editmode = false;

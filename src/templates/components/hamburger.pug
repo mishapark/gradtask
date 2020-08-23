@@ -1,28 +1,34 @@
 script(type="text/x-template")#hamburger-container
     .hamburger__menu
-        openBtn
-        overlay
+        openBtn(@openHam="openHam")
+        overlay(:class="{active: isHam}" @closeHam="closeHam")
 
 
 
 script(type="text/x-template")#hamburger-open
     .hamburger__open
         input.hambuger__input(type="checkbox")#hambuger__toggle
-        label.hamburger__open-btn(for="hambuger__toggle")
+        label.hamburger__open-btn(
+            @click="$emit('openHam', $event)"
+            for="hambuger__toggle"
+        )
             span.hamburger__open-span
 
 
 
 script(type="text/x-template")#hamburger-overlay
     .hamburger__overlay
-        closeBtn
+        closeBtn(@closeHam="$emit('closeHam', $event)")
         .hamburger__content
             hamContent
 
 script(type="text/x-template")#hamburger-close
     .hamburger__close
         input.hambuger__input(type="checkbox")#hambuger__toggle-close
-        label.hamburger__close-btn(for="hambuger__toggle-close")
+        label.hamburger__close-btn(
+            @click="$emit('closeHam', $event)"
+            for="hambuger__toggle-close"
+            )
                 span.hamburger__close-span
 
 

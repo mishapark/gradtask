@@ -67,31 +67,29 @@ export default {
        appInput: input
    },
    methods: {
-       onApprove() {
+       async onApprove() {
            this.$emit('approve', this.currentSkill)
 
-            this.$validate().then(function(success) {
-                if(success) 
-                    // if (this.skill.title === this.currentSkill.title) {
-                    //     this.editmode = false;
-                    // } else {
-                    //     this.skill.title = this.currentSkill.title;
-                    //     this.editmode = false;
-                    // }
+            if ((await this.$validate()) === true) {
+                if (this.skill.title === this.currentSkill.title) {
                     this.editmode = false;
-         
-                    // if (this.skill.percent === this.currentSkill.percent) {
-                    //     this.editmode = false;
-                    // } else {
-                    //     this.skill.percent = this.currentSkill.percent;
-                    //     this.editmode = false;
-                    // }
-                
-            });
+                } else {
+                    this.skill.title = this.currentSkill.title;
+                    this.editmode = false;
+                }
 
+                if (this.skill.percent === this.currentSkill.percent) {
+                    this.editmode = false;
+                } else {
+                    this.skill.percent = this.currentSkill.percent;
+                    this.editmode = false;
+                }
+            }
        },
        onRemove() {
            this.editmode = false;
+           this.currentSkill.title = this.skill.title;
+           this.currentSkill.percent = this.skill.percent;
        }
    },
 }

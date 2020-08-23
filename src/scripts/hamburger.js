@@ -21,12 +21,17 @@ new Vue({
     el: "#hamburger-component",
     template: "#hamburger-container",
     components: {overlay, openBtn},
+    data() {
+        return{
+            isHam: false
+        }
+    },
     methods: {
-        open() {
-            this.$emit('open');
-          },
-        close() {
-            this.$emit('close');
-          },
+        openHam() {
+            this.isHam = true;
+        },
+        closeHam() {
+            this.isHam = false;
+        }
     }
 })

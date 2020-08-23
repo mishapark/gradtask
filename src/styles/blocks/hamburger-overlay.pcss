@@ -1,6 +1,5 @@
 .hamburger__overlay {
     display: none;
-    /* display: flex; */
     align-items: center;
     justify-content: flex-start;
     position: fixed;
@@ -10,6 +9,10 @@
     left: 60%;
     background: #fff;
     z-index: 10000;
+
+}
+.hamburger__overlay.active {
+    display: flex;
 }
 
 .hamburger__content {
@@ -26,6 +29,14 @@
     margin-bottom: 95px;
 }
 
+.menu__link--hamburger {
+    &:hover {
+        color: #FF9A00;
+        transition: 0.5s;
+    }
+    transition: 0.5s;
+}
+
 .menu__item--hamburger {
     margin-bottom: 23px;
 }
@@ -34,4 +45,10 @@
     fill: #414C63;
     width: 25px;
     height: 25px;
+    transition: 0.5s;
+
+    &:hover {
+        fill: #FF9A00;
+        transition: 0.5s;
+    }
 }
