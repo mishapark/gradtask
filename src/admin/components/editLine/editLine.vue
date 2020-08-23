@@ -8,7 +8,6 @@
     </div>
     <div v-else class="title">
       <div class="input">
-        <div class="message">{{ validation.firstError("editTitle") }}</div>
         <app-input
           placeholder="Название новой группы"
           :value="value"
@@ -16,6 +15,7 @@
           @keydown.native.enter="onApprove"
           autofocus="autofocus"
           no-side-paddings="no-side-paddings"
+          :errorMessage="validation.firstError('editTitle')"
           v-model="editTitle"
           :class="{inputError:validation.hasError('editTitle')}"
         ></app-input>
@@ -66,7 +66,7 @@ export default {
   methods: {
     onApprove() {
       this.$validate().then(function(success) {
-        if (success === true) {
+        if (success) {
           if (this.title.trim() === this.value.trim()) {
             this.editmode = false;
           } else {

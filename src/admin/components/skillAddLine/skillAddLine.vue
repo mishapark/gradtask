@@ -6,6 +6,7 @@
             appInput(
                 placeholder="Новый навык"
                 v-model="input.skill"
+                :errorMessage="validation.firstError('input.skill')"
                 :class="{inputError:validation.hasError('input.skill')}"
             ).name
             appInput(
@@ -14,12 +15,10 @@
                 max="100"
                 maxLength="3"
                 v-model="input.percent"
+                :errorMessage="validation.firstError('input.percent')"
                 :class="{inputError:validation.hasError('input.percent')}"
             ).percent
             <iconed-btn type="iconed" title="" />
-        .message-col
-            .message {{ validation.firstError("input.skill") }}
-            .message {{ validation.firstError("input.percent") }}
 </template>
 
 <script>

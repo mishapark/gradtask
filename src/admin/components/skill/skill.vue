@@ -10,10 +10,14 @@
             appInput(
                 v-model="currentSkill.title"
                 noSlidePaddings
+                :class="{inputError:validation.hasError('currentSkill.title')}"
+                :errorMessage="validation.firstError('currentSkill.title')"
                 )
         .percent
             appInput(
                 v-model="currentSkill.percent"
+                :class="{inputError:validation.hasError('currentSkill.percent')}"
+                :errorMessage="validation.firstError('currentSkill.percent')"
                 type="number"
                 min="0"
                 max="100"
@@ -21,14 +25,26 @@
             )
         .button
             icon(symbol="tick" @click="onApprove").btn
-            icon(symbol="cross" @click="editmode = false").btn
+            icon(symbol="cross" @click="onRemove").btn
 </template>
 
 <script>
 import input from "../input";
 import icon from "../icon";
+import simpleVueValidator from "simple-vue-validator";
+const { Validator } = simpleVueValidator;
 
 export default {
+    mixins: [simpleVueValidator.mixin],
+    validators: {
+        "currentSkill.title": value => {
+        return Validator.value(value).required("Введите название");
+        },
+        "currentSkill.percent": value => {
+        return Validator.value(value).required("Введите число");
+        }
+    },
+
     props: {
         skill: {
             type: Object,
@@ -54,11 +70,28 @@ export default {
        onApprove() {
            this.$emit('approve', this.currentSkill)
 
-           if (this.skill.title === this.currentSkill.title) {
-               this.editmode = false;
-           } else {
+            this.$validate().then(function(success) {
+                if(success) 
+                    // if (this.skill.title === this.currentSkill.title) {
+                    //     this.editmode = false;
+                    // } else {
+                    //     this.skill.title = this.currentSkill.title;
+                    //     this.editmode = false;
+                    // }
+                    this.editmode = false;
+         
+                    // if (this.skill.percent === this.currentSkill.percent) {
+                    //     this.editmode = false;
+                    // } else {
+                    //     this.skill.percent = this.currentSkill.percent;
+                    //     this.editmode = false;
+                    // }
+                
+            });
 
-           }
+       },
+       onRemove() {
+           this.editmode = false;
        }
    },
 }
