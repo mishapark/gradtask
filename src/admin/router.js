@@ -19,6 +19,9 @@ const routes = [
     {
         path:'/login',
         component:()=>import('./components/login.vue'),
+        meta: {
+            public: true
+        }
     },
 ];
 

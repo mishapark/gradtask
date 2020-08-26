@@ -20,4 +20,15 @@ export default {
 </script>
 
 
-<style lang="pcss" scoped src="../app.pcss"></style>
+<style lang="pcss" scoped>
+.login-component {
+    height: inherit;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    background: url("../../images/content/login.jpg")  center center / cover no-repeat;
+}
+</style>

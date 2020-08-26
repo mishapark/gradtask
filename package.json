@@ -62,6 +62,7 @@
     "last 2 versions"
   ],
   "dependencies": {
+    "axios": "^0.20.0",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
     "pug": "^3.0.0",

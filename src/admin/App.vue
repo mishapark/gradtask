@@ -1,14 +1,17 @@
 <template lang="pug">
     .root
-        headline(title="Панель администрирования")
-            avatar(
-                title="Михаил Пак" 
-                src="/src/images/content/user.jpg" 
-                alt="user picture")
-        tabs
-        .page-content
-            .page-container
-                router-view
+        div(v-if="$route.meta.public").login-page
+            router-view
+        div(v-else)
+            headline(title="Панель администрирования")
+                avatar(
+                    title="Михаил Пак" 
+                    src="/src/images/content/user.jpg" 
+                    alt="user picture")
+            tabs
+            .page-content
+                .page-container
+                    router-view
 </template>
 
 <script>
