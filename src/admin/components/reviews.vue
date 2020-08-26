@@ -32,15 +32,15 @@ export default {
         this.reviews = require('../data/reviews.json');
     },
     methods: {
-        // requirePhotos() {
-        //     this.reviews = this.reviews.map(work => {
-        //         review.photo = require(`../../images/content/${review.photo}`).default;
-        //         return review;
-        //     })
-        // }
+        requirePhotos() {
+            this.reviews = this.reviews.map(review => {
+                review.photo = require(`../../images/content/${review.photo}`).default;
+                return review;
+            })
+        }
     },
     mounted() {
-        // this.requirePhotos();
+        this.requirePhotos();
     }
 }
 </script>

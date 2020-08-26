@@ -6,7 +6,7 @@
                 .card-content
                     .user-pic
                         .pic-upld
-                            .pic 
+                            .pic
                             appButton(plain title="Добавить фото")
                     .edit-content
                         .user-info

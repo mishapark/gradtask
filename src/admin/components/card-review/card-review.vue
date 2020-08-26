@@ -2,7 +2,7 @@
     .card-review-component
         card
             .card-title(slot="title")
-                avatar
+                img(:src="review.photo").user-pic
                 .user-info
                     .user-name {{review.name}}
                     .user-occ {{review.occ}}
@@ -16,14 +16,11 @@
 <script>
 import card from "../Card"
 import icon from "../icon"
-import avatar from "../avatar"
-
 
 export default {
     components: {
         card,
         icon,
-        avatar,
     },
     props: {
         review: {

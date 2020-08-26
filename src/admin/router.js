@@ -15,7 +15,11 @@ const routes = [
     {
         path:'/reviews',
         component:()=>import('./components/reviews.vue'),
-    }
+    },
+    {
+        path:'/login',
+        component:()=>import('./components/login.vue'),
+    },
 ];
 
 const router = new VueRouter({
