@@ -21,18 +21,17 @@
                         placeholder="Введите пароль"
                     ).password-input
                 .login-btn
-                    appButton.submit-btn
+                    appButton(:disabled="isSubmitDisabled").submit-btn
 </template>
 
 <script>
 import input from "../input";
 import button from "../button";
+import $axios from "../../requests";
 import simpleVueValidator from "simple-vue-validator";
-import axios from "axios";
+import { mapActions } from "vuex";
 
 const { Validator } = simpleVueValidator;
-const baseUrl = "https://webdev-api.loftschool.com";
-const token = localStorage.getItem('token') || "";
 
 export default {
     components: {
@@ -44,7 +43,8 @@ export default {
             user: {
                 name: '',
                 password: ''
-            }
+            },
+            isSubmitDisabled: false
         }
     },
     mixins: [simpleVueValidator.mixin],
@@ -57,17 +57,28 @@ export default {
         }
     },
     methods: {
-        login() {
-            axios
-            .post(baseUrl + '/login', this.user)
-            .then(response => {
+        ...mapActions ({
+            showTooltip: "tooltips/show"
+        }),
+        async login() {
+            if (await this.$validate() === false) return;
+            this.isSubmitDisabled = true;
+            try {
+                const response = await $axios.post('/login', this.user)
+
                 const token = response.data.token;
-                axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-                localStorage.setItem('token', token)
-                console.log(response.data)
-            }).catch(error => {
-                console.log(error.response.data)
-            })
+                $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+                localStorage.setItem('token', token);
+                this.$router.replace('/');
+                console.log(response.data);
+            } catch (error) {
+                this.showTooltip({
+                    text: error.response.data.error,
+                    type: "error"
+                })
+            } finally {
+                this.isSubmitDisabled = false;
+            }
         }
     }
 }

@@ -5,20 +5,20 @@
         .component
             appInput(
                 placeholder="Новый навык"
-                v-model="input.skill"
-                :errorMessage="validation.firstError('input.skill')"
-                :class="{inputError:validation.hasError('input.skill')}"
+                v-model="skill.title"
+                :errorMessage="validation.firstError('skill.title')"
+                :class="{inputError:validation.hasError('skill.title')}"
             ).name
             appInput(
                 type="number"
                 min="0"
                 max="100"
                 maxLength="3"
-                v-model="input.percent"
-                :errorMessage="validation.firstError('input.percent')"
-                :class="{inputError:validation.hasError('input.percent')}"
+                v-model="skill.percent"
+                :errorMessage="validation.firstError('skill.percent')"
+                :class="{inputError:validation.hasError('skill.percent')}"
             ).percent
-            <iconed-btn type="iconed" title="" />
+            <iconed-btn type="round" title="" @click="handleClick"/>
 </template>
 
 <script>
@@ -31,17 +31,20 @@ const { Validator } = simpleVueValidator;
 export default {
     mixins: [simpleVueValidator.mixin],
     validators: {
-        "input.skill": value => {
+        "skill.title": value => {
         return Validator.value(value).required("Введите название навыка");
         },
-        "input.percent": value => {
-        return Validator.value(value).required("Введите число");
+        "skill.percent": value => {
+        return Validator.value(value)
+            .required("Введите число")
+            .integer("Должно быть числом")
+            .between(0, 100, "Некорректное значение");
         }
     },
     data() {
         return {
-            input: {
-                skill: "",
+            skill: {
+                title: "",
                 percent: ""
             }
         }
@@ -52,6 +55,12 @@ export default {
    components: {
        appInput: input,
        iconedBtn: button,
+   },
+   methods: {
+       async handleClick() {
+           if (await this.$validate() === false) return;
+           this.$emit('approve', this.skill)
+       }
    }
 }
 </script>

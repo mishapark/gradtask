@@ -4,7 +4,7 @@
         .percent {{skill.percent}} %
         .button
             icon(symbol="pencil" @click="editmode = true" grayscale).btn
-            icon(symbol="trash" @click="$emit('remove', skill.id)" grayscale).btn
+            icon(symbol="trash" @click="$emit('remove', currentSkill)" grayscale).btn
     .skill-component(v-else)
         .title
             appInput(
@@ -56,9 +56,10 @@ export default {
         return {
             editmode: false,
             currentSkill: {
-                id: 0,
+                id: this.skill.id,
                 title: this.skill.title,
-                percent: this.skill.percent
+                percent: this.skill.percent,
+                category: this.skill.category
             }
         }
     },

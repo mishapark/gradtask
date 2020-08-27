@@ -5,6 +5,7 @@
             slot="title"
             v-model="categoryTitle"
             :editModeByDefault="empty"
+            @approve="$emit('approve', $event)"
             )
         template(slot="content")
             ul.skills(
@@ -18,6 +19,7 @@
                     )
             .bottom-line
                 skillAddLine(
+                    @approve="$emit('create-skill', $event)"
                     :blocked="empty"
                 )
 

@@ -4,13 +4,18 @@
             slot
             .title {{title}}
             .btns
-                button(type="button" @click="$emit('action', 'logout')").btn Выйти
+                button(type="button" @click="logoutTheUser").btn Выйти
 </template>
 
 <script>
 export default {
     props: {
         title: String
+    },
+    methods: {
+      async logoutTheUser () {
+        await this.$router.push('/login')
+      }
     }
 }
 </script>

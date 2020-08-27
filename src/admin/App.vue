@@ -12,6 +12,13 @@
             .page-content
                 .page-container
                     router-view
+        div(:class="['notify-container', {active: isTooltipShown}]")
+                .notification
+                    notification(
+                        :type="tooltipType"
+                        :text="tooltipText"
+                        @click="hideTooltip"
+                    )
 </template>
 
 <script>
@@ -19,12 +26,15 @@ import "../styles/main.pcss"
 import avatar from "./components/avatar/avatar"
 import headline from "./components/headline/headline"
 import tabs from "./components/tabs/tabs"
+import notification from "./components/notification"
+import { mapState, mapActions } from "vuex";
 
 export default {
     components: {
         avatar, 
         headline, 
-        tabs
+        tabs,
+        notification
     },
     data() {
         return {
@@ -34,6 +44,18 @@ export default {
     },
     created() {
         this.categories = require("./data/categories.json");
+    },
+    computed: {
+        ...mapState("tooltips", {
+            isTooltipShown: state => state.isShown,
+            tooltipText: state => state.text,
+            tooltipType: state => state.type
+        })
+    },
+    methods: {
+        ...mapActions({
+            hideTooltip: "tooltips/hide"
+        })
     }
 }
 </script>
